@@ -1,6 +1,6 @@
 package com.designpatterns.strategy;
 
-public interface JogadaStrategy {
+public interface BonusStrategy {
 	
 	void jogar();
 	
