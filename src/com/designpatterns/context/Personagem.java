@@ -3,6 +3,8 @@ package com.designpatterns.context;
 import static java.util.Objects.isNull;
 
 import com.designpatterns.strategy.BonusStrategy;
+import com.designpatterns.strategy.impl.DefesaBanana;
+import com.designpatterns.strategy.impl.DefesaCascoVerde;
 import com.designpatterns.strategy.impl.SemBonus;
 
 public abstract class Personagem {
@@ -15,9 +17,17 @@ public abstract class Personagem {
 
 	public void jogar() {
 		if (isNull(strategy)) {
-			strategy = new SemBonus();
+			descartarEstrategia();
 		}
 		strategy.jogar();
+		strategy = new SemBonus();
+	}
+
+	protected boolean estrategiaDeDefesa() {
+		return strategy instanceof DefesaCascoVerde || strategy instanceof DefesaBanana;
+	}
+
+	protected void descartarEstrategia() {
 		strategy = new SemBonus();
 	}
 
