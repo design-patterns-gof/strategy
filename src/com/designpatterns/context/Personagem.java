@@ -11,23 +11,23 @@ public abstract class Personagem {
 
 	BonusStrategy strategy;
 
-	Personagem(BonusStrategy strategy) {
+	public void jogar() {
+		if (isNull(strategy)) {
+			definirEstrategiaSemBonus();
+		}
+		strategy.jogar();
+		definirEstrategiaSemBonus();
+	}
+
+	public void capturarBonus(BonusStrategy strategy) {
 		this.strategy = strategy;
 	}
 
-	public void jogar() {
-		if (isNull(strategy)) {
-			descartarEstrategia();
-		}
-		strategy.jogar();
-		strategy = new SemBonus();
-	}
-
-	protected boolean estrategiaDeDefesa() {
+	protected boolean isEstrategiaDeDefesa() {
 		return strategy instanceof DefesaCascoVerde || strategy instanceof DefesaBanana;
 	}
 
-	protected void descartarEstrategia() {
+	protected void definirEstrategiaSemBonus() {
 		strategy = new SemBonus();
 	}
 

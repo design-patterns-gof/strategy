@@ -3,28 +3,29 @@ package com.designpatterns;
 import com.designpatterns.context.Bowser;
 import com.designpatterns.context.Mario;
 import com.designpatterns.context.Personagem;
-import com.designpatterns.strategy.impl.AtaqueBanana;
 import com.designpatterns.strategy.impl.AtaqueTopera;
 import com.designpatterns.strategy.impl.DefesaCascoVerde;
-import com.designpatterns.strategy.impl.SemBonus;
 
 public class Teste {
 
 	public static void main(String[] args) {
 
-		Personagem mario = new Mario(null);
+		Personagem mario = new Mario();
 		mario.jogar();
-		mario = new Mario(new SemBonus());
+		mario.capturarBonus(new AtaqueTopera());
 		mario.jogar();
-		mario = new Mario(new AtaqueBanana());
 		mario.jogar();
-		mario = new Mario(new AtaqueTopera());
-		mario.jogar();
+		mario.capturarBonus(new DefesaCascoVerde());
 		mario.jogar();
 
-		Personagem bowser = new Bowser(null);
+		Personagem bowser = new Bowser();
 		bowser.jogar();
-		bowser = new Bowser(new DefesaCascoVerde());
+		bowser.jogar();
+		bowser.capturarBonus(new AtaqueTopera());
+		bowser.jogar();
+		bowser.capturarBonus(new DefesaCascoVerde());
+		bowser.jogar();
+		bowser.capturarBonus(null);
 		bowser.jogar();
 
 	}

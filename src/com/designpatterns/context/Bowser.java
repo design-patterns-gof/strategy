@@ -4,15 +4,12 @@ import com.designpatterns.strategy.BonusStrategy;
 
 public class Bowser extends Personagem {
 
-	public Bowser(BonusStrategy strategy) {
-		super(strategy);
-	}
-
 	@Override
-	public void jogar() {
-		if (estrategiaDeDefesa())
-			descartarEstrategia();
-		super.jogar();
+	public void capturarBonus(BonusStrategy bonusStrategy) {
+		super.capturarBonus(bonusStrategy);
+		if (isEstrategiaDeDefesa()) {
+			definirEstrategiaSemBonus();
+		}
 	}
 
 	static {
